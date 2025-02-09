@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pecheur Restaurant - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic CSS for the admin panel */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 3px solid #e67e22;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        /* Menu Items */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-item {
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .edit-btn,
+        .delete-btn,
+        .add-btn {
+            padding: 5px 10px;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .admin-container {
+            padding: 20px;
+        }
+
+        .menu-list,
+        .add-item-form {
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #showcase {
+            min-height: 400px;
+            background: url('../img/showcase.jpg') no-repeat;
+            text-align: center;
+            color: #fff;
+        }
+
+        #showcase h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        #newsletter {
+            padding: 15px;
+            color: #fff;
+            background: #333;
+        }
+
+        #newsletter h1 {
+            float: left;
+        }
+
+        #newsletter form {
+            float: right;
+            margin-top: 15px;
+        }
+
+        #newsletter input[type="email"] {
+            padding: 4px;
+            height: 25px;
+            width: 250px;
+        }
+
+        aside#sidebar {
+            float: right;
+            width: 30%;
+            margin-top: 10px;
+        }
+
+        aside#sidebar .quote input,
+        aside#sidebar .quote textarea {
+            width: 90%;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Pecheur</span> Restaurant</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="admin-container">
+        <h2>Edit Menu Items</h2>
+
+        <!-- Menu List -->
+        <div class="menu-list">
+            <h3>Current Menu Items</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <span>Tacos</span>
+                    <span>30.DH</span>
+                    <div>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <span>Paninis</span>
+                    <span>18.50.DH</span>
+                    <div>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <span>Pizza</span>
+                    <span>70.DH</span>
+                    <div>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Item Form -->
+        <div class="add-item-form">
+            <h3>Add New Item</h3>
+            <form id="addItemForm">
+                <label for="itemName">Item Name:</label>
+                <input type="text" id="itemName" name="itemName"><br><br>
+
+                <label for="itemPrice">Item Price:</label>
+                <input type="number" id="itemPrice" name="itemPrice"><br><br>
+
+                <!-- Add image upload input -->
+                <label for="itemImage">Item Image:</label>
+                <input type="file" id="itemImage" name="itemImage"><br><br>
+
+                <button type="submit" class="add-btn">Add Item</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addItemForm = document.getElementById('addItemForm');
+
+            addItemForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Get the values from the form
+                const itemName = document.getElementById('itemName').value;
+                const itemPrice = document.getElementById('itemPrice').value;
+                const itemImage = document.getElementById('itemImage').files[0]; // Get the first file from the input
+
+                // Do something with the data (e.g., send to the server)
+                console.log('Item Name:', itemName);
+                console.log('Item Price:', itemPrice);
+                console.log('Item Image:', itemImage); // This is a File object
+
+                // You would typically send this data to a server using AJAX/Fetch
+                // Here's an example of sending the data using Fetch API (you'd need a server-side endpoint)
+                /*
+                const formData = new FormData();
+                formData.append('itemName', itemName);
+                formData.append('itemPrice', itemPrice);
+                formData.append('itemImage', itemImage);
+
+                fetch('your-server-endpoint', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Optionally, update the UI to show a success message or update the menu list
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Optionally, update the UI to show an error message
+                });
+                */
+
+                // Reset the form (optional)
+                addItemForm.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>
